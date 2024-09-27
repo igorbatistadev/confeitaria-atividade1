@@ -125,9 +125,7 @@ public class GerenciadorDeVendas {
 
     private void listarClientes() {
         System.out.println("\n=== Clientes ===");
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.getNome());
-        }
+        this.clientes.forEach(System.out::println);
         System.out.println();
         voltarMenu();
     }
