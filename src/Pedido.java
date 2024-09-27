@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    Cliente cliente;
-    List<PedidoItem> itens;
-    boolean pago;
+    private Cliente cliente;
+    private List<PedidoItem> itens;
+    private boolean pago;
 
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
@@ -14,7 +14,7 @@ public class Pedido {
     void adicionarProduto(Produto produto, int quantidade) {
         PedidoItem pedidoItem = new PedidoItem(produto, quantidade);
         this.itens.add(pedidoItem);
-        System.out.println("Produto " + produto.descricao + " adicionado ao pedido!");
+        System.out.println("Produto " + produto.getDescricao() + " adicionado ao pedido!");
     }
 
     void realizarPagamento() {
@@ -28,11 +28,13 @@ public class Pedido {
     }
 
     double getValorTotalPedido() {
-        double total = 0;
-        for (PedidoItem pedidoItem : this.itens) {
-            total += pedidoItem.getValorTotalItem();
-        }
-        return total;
-//        return this.itens.stream().map(PedidoItem::getValorTotalItem).reduce(0.0, Double::sum);
+        return this.itens.stream().map(PedidoItem::getValorTotalItem).reduce(0.0, Double::sum);
+    }
+
+    public void resumoPedido() {
+        System.out.println("======== Resumo pedido ========");
+        System.out.println("Cliente: " + this.cliente.getNome());
+        System.out.println("Quantidade de itens: " + this.itens.size());
+        System.out.println("Valor total do pedido: " + this.getValorTotalPedido());
     }
 }

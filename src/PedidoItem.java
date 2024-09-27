@@ -1,12 +1,16 @@
 public class PedidoItem {
-    Produto produto;
-    int quantidade;
-    double precoVendaUnitario;
+    private Produto produto;
+    private int quantidade;
+    private double precoVendaUnitario;
 
     public PedidoItem(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
-        this.precoVendaUnitario = produto.preco;
+        this.precoVendaUnitario = produto.getPreco();
+    }
+
+    public String getDescricaoItem() {
+        return this.produto.getDescricao();
     }
 
     public double getValorTotalItem() {
